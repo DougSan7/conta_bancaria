@@ -1,9 +1,28 @@
 import readlinesync = require("readline-sync");
 import { colors } from "./src/util/Colors";
+import { Conta } from "./src/model/Conta";
 
 export function main() {
 
   let opcao: number;
+// instanciando os objs com a clas Conta
+  const conta0: Conta = new Conta(0,1,1,'Douglas Santos',2500);
+  conta0.visualizar();
+  conta0.sacar(1000);
+  conta0.visualizar();
+  conta0.depositar(500);
+  conta0.visualizar();
+  
+  const conta1: Conta = new Conta(1,2,1,"Edvania Maria", 5200);
+  conta1.visualizar();
+  conta1.sacar(350);
+  conta1.visualizar();  
+
+  const conta2: Conta = new Conta(2,1,1,"Clove Aparecido", 5000);
+  conta2.visualizar(); 
+  conta2.depositar(1200);
+  conta2.visualizar();
+
 
   while (true) {
     
