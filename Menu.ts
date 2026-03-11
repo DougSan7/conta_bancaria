@@ -1,27 +1,33 @@
 import readlinesync = require("readline-sync");
 import { colors } from "./src/util/Colors";
 import { Conta } from "./src/model/Conta";
+import { ContaCorrente } from "./src/model/ContaCorrente";
+import { ContaPoupanca } from "./src/model/ContaPoupanca";
 
 export function main() {
 
   let opcao: number;
-// instanciando os objs com a clas Conta
-  const conta0: Conta = new Conta(0,1,1,'Douglas Santos',2500);
-  conta0.visualizar();
-  conta0.sacar(1000);
-  conta0.visualizar();
-  conta0.depositar(500);
-  conta0.visualizar();
-  
-  const conta1: Conta = new Conta(1,2,1,"Edvania Maria", 5200);
-  conta1.visualizar();
-  conta1.sacar(350);
-  conta1.visualizar();  
+  // Testando as classes Corrente e Poupança.
+  const conta: Conta = new Conta(1,1,1,'Douglas S.',1000);
+  conta.visualizar();
+  conta.sacar(500);
+  conta.visualizar();
+  conta.depositar(1000);
+  conta.visualizar();
 
-  const conta2: Conta = new Conta(2,1,1,"Clove Aparecido", 5000);
-  conta2.visualizar(); 
-  conta2.depositar(1200);
-  conta2.visualizar();
+  const contaCorrente: ContaCorrente = new ContaCorrente(2,2,1,'Edvania M',2000,4000);
+  contaCorrente.visualizar();
+  contaCorrente.sacar(9000);
+  contaCorrente.visualizar();
+  contaCorrente.depositar(3000);
+  contaCorrente.visualizar();
+
+  const contaPoupanca: ContaPoupanca = new ContaPoupanca(2,2,2,'Clove S.',3000,10);
+  contaPoupanca.visualizar();
+  contaPoupanca.sacar(2000);
+  contaPoupanca.visualizar();
+  contaPoupanca.depositar(3000);
+  contaPoupanca.visualizar();
 
 
   while (true) {

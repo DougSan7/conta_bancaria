@@ -1,10 +1,10 @@
 export class Conta{
   
-  private _numero: number;
-  private _agencia: number;
-  private _tipo: number;
-  private _titular: string;
-  private _saldo: number;
+  private _numero!: number;
+  private _agencia!: number;
+  private _tipo!: number;
+  private _titular!: string;
+  private _saldo!: number;
   
   constructor(numero: number, agencia: number, tipo: number, titular: string, saldo: number){
     this._numero = numero;
@@ -17,7 +17,6 @@ export class Conta{
   public get numero(){
     return this._numero;
   }
-
   public set numero(numero:number){
     this._numero = numero;
   }
@@ -25,7 +24,6 @@ export class Conta{
   public get agencia(){
     return this._agencia;
   }
-
   public set agencia(agencia:number){
     this._agencia = agencia;
   }
@@ -33,7 +31,6 @@ export class Conta{
   public get tipo(){
     return this._tipo;
   }
-
   public set tipo(tipo:number){
     this._tipo = tipo;
   }
@@ -41,7 +38,6 @@ export class Conta{
   public get titular(){
     return this._titular;
   }
-
   public set titular(titular:string){
     this._titular = titular;
   }
@@ -49,7 +45,6 @@ export class Conta{
   public get saldo(){
     return this._saldo;
   }
-
   public set saldo(saldo:number){
     this._saldo = saldo;
   }
