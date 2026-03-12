@@ -1,33 +1,20 @@
 import readlinesync = require("readline-sync");
 import { colors } from "./src/util/Colors";
-import { Conta } from "./src/model/Conta";
 import { ContaCorrente } from "./src/model/ContaCorrente";
 import { ContaPoupanca } from "./src/model/ContaPoupanca";
+import { ContaController } from "./src/Controller/ContaController";
+import { clear } from "node:console";
 
 export function main() {
 
-  let opcao: number;
-  // Testando as classes Corrente e Poupança.
-  const conta: Conta = new Conta(1,1,1,'Douglas S.',1000);
-  conta.visualizar();
-  conta.sacar(500);
-  conta.visualizar();
-  conta.depositar(1000);
-  conta.visualizar();
+  //let opcao: number;
+  
+  // instanciando a classe controller
+  let contas: ContaController = new ContaController();
 
-  const contaCorrente: ContaCorrente = new ContaCorrente(2,2,1,'Edvania M',2000,4000);
-  contaCorrente.visualizar();
-  contaCorrente.sacar(9000);
-  contaCorrente.visualizar();
-  contaCorrente.depositar(3000);
-  contaCorrente.visualizar();
-
-  const contaPoupanca: ContaPoupanca = new ContaPoupanca(2,2,2,'Clove S.',3000,10);
-  contaPoupanca.visualizar();
-  contaPoupanca.sacar(2000);
-  contaPoupanca.visualizar();
-  contaPoupanca.depositar(3000);
-  contaPoupanca.visualizar();
+  let opcao, agencia, tipo, limite, saldo, aniversario: number;
+  let titular: string;
+  const tipoContas =  ['Conta Corrente', 'Conta Poupanca'];
 
 
   while (true) {
@@ -65,16 +52,49 @@ export function main() {
   switch(opcao){
     case 1:
       console.log(colors.fg.whitestrong,
-        "\n\nCriar Conta\n\n", colors.reset);    
+        "\nCriar Conta\n", colors.reset);    
+        
+        console.log("Digite o numero da Agencia: ");
+        agencia = readlinesync.questionInt("");
+
+        console.log("Digite o nome do Titular da conta: ");
+        titular = readlinesync.question("");        
+
+        console.log("Digite o tipo da conta: ");
+        tipo = readlinesync.keyInSelect(tipoContas,"",{cancel:false}) + 1;
+
+        console.log("Digite o saldo da conta(R$): ");
+        saldo = readlinesync.questionFloat();
+
+        switch(tipo){
+          case 1:
+            console.log("Digite o Limite disponivel: ")
+            limite = readlinesync.questionFloat("");
+            contas.cadastrar(
+              new ContaCorrente(contas.gerarNumero(), agencia, tipo, titular, saldo, limite));
+            break;
+        
+          case 2:
+            console.log("Digite o dia do aniversario do titular: ")
+            aniversario = readlinesync.questionInt("");
+            contas.cadastrar(
+              new ContaPoupanca(contas.gerarNumero(), agencia, tipo, titular, saldo, aniversario));            
+            break;        
+        }
+
       
       keyPress();
+      console.clear();
       break;
 
     case 2:
       console.log(colors.fg.whitestrong,
-        "\n\nListar Todas as Contas\n\n", colors.reset);    
-      
+        "\nListar Todas as Contas\n", colors.reset);    
+        console.clear();
+        contas.listarTodos();
+        
       keyPress();
+      console.clear();
       break;
 
     case 3:
@@ -82,6 +102,7 @@ export function main() {
         "\n\nBuscar Conta por Numero\n\n", colors.reset);    
       
       keyPress();
+      console.clear();
       break;
 
     case 4:
@@ -89,6 +110,7 @@ export function main() {
         "\n\Atualizar Dados da Conta\n\n", colors.reset);    
       
       keyPress();
+      console.clear();
       break;
 
     case 5:
@@ -96,6 +118,7 @@ export function main() {
         "\n\nApagar Conta\n\n", colors.reset);    
       
       keyPress();
+      console.clear();
       break;
 
     case 6:
@@ -103,6 +126,7 @@ export function main() {
         "\n\nSacar\n\n", colors.reset);    
       
       keyPress();
+      console.clear();
       break;
 
     case 7:
@@ -110,6 +134,7 @@ export function main() {
         "\n\nDepositar\n\n", colors.reset);    
       
       keyPress();
+      console.clear();
       break;
 
     case 8:
@@ -117,6 +142,7 @@ export function main() {
         "\n\nTransferir Valores Entre Contas\n\n", colors.reset);    
       
       keyPress();
+      console.clear();
       break;
 
     default:
@@ -124,6 +150,7 @@ export function main() {
         "\n\nCriar Conta\n\n", colors.reset);    
       
       keyPress();
+      console.clear();
       break;  
     }
   }  
