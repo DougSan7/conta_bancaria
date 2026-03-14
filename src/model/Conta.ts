@@ -1,4 +1,7 @@
 export abstract class Conta{
+  static visualizar() {
+    throw new Error("Method not implemented.");
+  }
   
   private _numero!: number;
   private _agencia!: number;
@@ -54,13 +57,13 @@ export abstract class Conta{
     if(this._saldo < valor){
       console.log("\nSaldo Insuficiente para realizar o saque!")
       return false;
-    }
-    
+    }   
     this._saldo = this._saldo - valor;
     return true;
   }
 
   public depositar(valor:number): void{
+
     this._saldo = this._saldo + valor;
   }
 

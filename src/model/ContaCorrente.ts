@@ -19,6 +19,11 @@ export class ContaCorrente extends Conta{
 
   public sacar(valor:number): boolean {
     
+    if(valor < 0 ){
+      console.log(`${valor} E negativo, nao e possivel realizar o saque!`);
+      return false;
+    } 
+    
     if((this.saldo + this._limite) < valor){
       console.log(`Saldo Insuficiente, o valor ${valor.toFixed(2)} supera o valor em conta`);
       return false;
